@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Admin Dashboard</h2>
+        <ul>
+            <li><a href="/add_slots">Add Slots</a></li>
+            <li><a href="/staff_details">View Staff Details</a></li>
+            <li><a href="/generate_report">Generate Parking Report</a></li>
+            <li><a href="/logout">logout</a></li>
+        </ul>
+    </div>
+    <footer>
+
+        <p>&copy;;2024 vehicle parking management system</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Details</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Staff Details</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Role</th>
+                <th>Email</th>
+                <th>Phone</th>
+            </tr>
+            {% for staff in staff_details %}
+            <tr>
+                <td>{{ staff.id }}</td>
+                <td>{{ staff.username }}</td>
+                <td>{{ staff.role }}</td>
+                <td>{{ staff.e_mail }}</td>
+                <td>{{ staff.phone_number }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="button-container">
+        <a href="admin_dashboard" class="btn">Back to Dashboard</a>
+    </div>
+    <footer>
+        <p>&copy; 2024 vehicle parking management system</p>
+    </footer>
+</body>
+</html>

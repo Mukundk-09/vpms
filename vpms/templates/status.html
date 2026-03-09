@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Slot Status</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Available Slots</h2>
+        <table>
+            <tr>
+                <th>Slot Number</th>
+                <th>Slot Type</th>
+                <th>Status</th>
+            </tr>
+            {% for slot in available_slots %}
+            <tr>
+                <td>{{ slot['slot_number'] }}</td>
+                <td>{{ slot['slot_type'] }}</td>
+                <td>{{ slot['status'] }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3">No available slots</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h2>Occupied Slots</h2>
+        <table>
+            <tr>
+                <th>Slot Number</th>
+                <th>Slot Type</th>
+                <th>Vehicle Number</th>
+                <th>Owner Name</th>
+                <th>Entry Time</th>
+            </tr>
+            {% for slot in occupied_slots %}
+            <tr>
+                <td>{{ slot['slot_number'] }}</td>
+                <td>{{ slot['slot_type'] }}</td>
+                <td>{{ slot['vehicle_number'] }}</td>
+                <td>{{ slot['owner_name'] }}</td>
+                <td>{{ slot['entry_time'] }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5">No occupied slots</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <div class="button-container">
+            <a href="/dashboard" class="btn">Back to Dashboard</a>
+        </div>
+    </div>
+   
+</body>
+</html>

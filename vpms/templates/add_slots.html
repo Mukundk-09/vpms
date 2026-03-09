@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Parking Slots</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Add Total Parking Slots</h2>
+        <form action="/add_slots" method="POST">
+            <label for="total_slots">Total Parking Slots:</label>
+            <input type="number" name="total_slots" min="1" required>
+
+            <label for="car_slots">Number of Car Slots:</label>
+            <input type="number" name="car_slots" min="0" required>
+
+            <label for="bike_slots">Number of Bike Slots:</label>
+            <input type="number" name="bike_slots" min="0" required>
+
+            <button type="submit">Add Slots</button>
+            <button type="reset" >Clear</button>
+        </form>
+    </div>
+    <div class="button-container">
+        <a href="/admin_dashboard" class="btn">Back to Dashboard</a>
+    </div>
+    <footer>
+        <p>&copy;;2024 vehicle parking management system</p>
+    </footer>
+</body>
+</html>

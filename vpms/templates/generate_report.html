@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Report</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Generate Report</h2>
+        <form action="/generate_report" method="get">
+            <label for="type">Report Type:</label>
+            <select name="type" id="type">
+                <option value="daily">Daily</option>
+                <option value="monthly">Monthly</option>
+            </select>
+            <br><br>
+            <label for="start_date">Start Date:</label>
+            <input type="date" id="start_date" name="start_date" required>
+            <br><br>
+
+            <label for="end_date">End Date:</label>
+            <input type="date" id="end_date" name="end_date" required>
+            <br><br>
+
+            <input type="submit" value="Generate Report">
+        </form>
+
+        {% if entries %}
+            <h3>{{ report_title }}</h3>
+            <p>Total Cars: {{ car_count }}</p>
+            <p>Total Bikes: {{ bike_count }}</p>
+            <p>Total Parking Bill Collected: rs{{ total_bill or 0 }}</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Vehicle Number</th>
+                        <th>Owner Name</th>
+                        <th>Vehicle Type</th>
+                        <th>Slot Number</th>
+                        <th>Entry Time</th>
+                        <th>Exit Time</th>
+                        <th>Bill</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for entry in entries %}
+                    <tr>
+                        <td>{{ entry.vehicle_number }}</td>
+                        <td>{{ entry.owner_name }}</td>
+                        <td>{{ entry.vehicle_type }}</td>
+                        <td>{{ entry.slot_number }}</td>
+                        <td>{{ entry.entry_time }}</td>
+                        <td>{{ entry.exit_time }}</td>
+                        <td>{{ entry.parking_bill }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+
+        {% endif %}
+    </div>
+    <div class="button-container">
+        <a href="/admin_dashboard" class="btn">Back to Dashboard</a>
+    </div>
+    <footer>
+
+        <p>&copy;;2024 vehicle parking management system</p>
+    </footer>
+</body>
+</html>

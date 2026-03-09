@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Login</title>
+</head>
+<body>
+    <div class="container">
+        <form action="/login" method="POST">
+            <h2><u>Login</u></h2>
+            <label for="username">Staff Name</label>
+            <input type="text" name="username" required><br>
+            <label for="password">Password</label>
+            <input type="password" name="password" required><br>
+            <button type="submit">Login</button><br>
+            <a href="/forgot_password">Forgot Password?</a><br>
+            <a href="/register">Don't have an account? Register</a>
+        </form>
+    </div>
+    <footer>
+        <p>&copy;;2024 vehicle parking management system</p>
+    </footer>
+</body>
+</html>

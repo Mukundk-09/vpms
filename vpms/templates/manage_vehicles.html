@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Manage Vehicles</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Manage Vehicles</h2>
+        
+        <!-- Form to add a vehicle -->
+        <form action="/manage_vehicles" method="POST">
+            <input type="text" name="vehicle_number" placeholder="Vehicle Number" required>
+            <input type="text" name="owner_name" placeholder="Owner Name" required>
+            <input type="text" name="slot_number" placeholder="Slot Number" required>
+            <label for="vehicle_type">Vehicle Type:</label>
+            <select name="vehicle_type" required>
+            <option value="car">Car</option>
+            <option value="bike">Bike</option>
+            </select>
+            <button type="submit" name="action" value="add">Add Vehicle</button>
+        </form>
+
+        <!-- Existing Vehicles and Update Exit Time -->
+        <h3>Current Vehicles</h3>
+        <table>
+            <tr>
+                <th>Vehicle Number</th>
+                <th>Owner Name</th>
+                <th>Type</th>
+                <th>Slot Number</th>
+                <th>Entry Time</th>
+                <th>Exit Time</th>
+                <th>Parking Bill</th>
+                
+            </tr>
+            {% for vehicle in vehicles %}
+            <tr>
+                <td>{{ vehicle['vehicle_number'] }}</td>
+                <td>{{ vehicle['owner_name'] }}</td>
+                <td>{{ vehicle['vehicle_type'] }}</td>
+                <td>{{ vehicle['slot_number'] }}</td>
+                <td>{{ vehicle['entry_time'] }}</td>
+                <td>{{ vehicle['exit_time'] or 'Not Exited' }}</td>
+                <td>{{ vehicle['parking_bill'] }}</td>
+                <td>
+                    {% if not vehicle['exit_time'] %}
+                    <form action="/manage_vehicles" method="POST">
+                        <input type="hidden" name="vehicle_id" value="{{ vehicle['id'] }}">
+                        <button type="submit" name="action" value="exit">Exit Vehicle</button>
+                    </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="button-container">
+        <a href="/dashboard" class="btn">Back to Dashboard</a>
+    </div>
+   
+</body>
+</html>
